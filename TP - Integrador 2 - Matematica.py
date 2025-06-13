@@ -33,7 +33,7 @@ def interseccionConjuntos(c1, c2):
 def menuUnion(conjuntosDniAlumnos):
     def unionConjuntos(c1, c2):
         return list(set(c1).union(c2))
-    apellido_seleccion = None
+    apellidoSeleccion = None
     while True:
         print("\n-----1 - Unión de conjuntos-----")
         print("Conjuntos dispinibles: ")
@@ -41,18 +41,18 @@ def menuUnion(conjuntosDniAlumnos):
             print(f"{i+1} - {str.capitalize(k)}")
         try:
             opcion = int(input("Seleccione el conjunto para unir: "))
-            apellido_seleccion = APELLIDOS[opcion - 1]
+            apellidoSeleccion = APELLIDOS[opcion - 1]
         except ValueError:
             print("Por favor, ingrese un número válido.")
             continue
         break
     for apellido, conjunto in conjuntosDniAlumnos.items():
-        if apellido == apellido_seleccion:
+        if apellido == apellidoSeleccion:
             continue
-        print(f"Unión de {str.capitalize(apellido_seleccion)} y {str.capitalize(apellido)}: {unionConjuntos(conjuntosDniAlumnos[apellido_seleccion], conjunto)}")
+        print(f"Unión de {str.capitalize(apellidoSeleccion)} y {str.capitalize(apellido)}: {unionConjuntos(conjuntosDniAlumnos[apellidoSeleccion], conjunto)}")
 
 def menuInterseccion(conjuntosDniAlumnos):
-    apellido_seleccion = None
+    apellidoSeleccion = None
     while True:
         print("\n-----2 - Intersección de conjuntos-----")
         print("\nConjuntos dispinibles: ")
@@ -60,21 +60,21 @@ def menuInterseccion(conjuntosDniAlumnos):
             print(f"{i+1} - {str.capitalize(k)}")
         try:
             opcion = int(input("Seleccione el conjunto para interseccion: "))
-            apellido_seleccion = APELLIDOS[opcion - 1]
+            apellidoSeleccion = APELLIDOS[opcion - 1]
         except ValueError:
             print("Por favor, ingrese un número válido.")
             continue
         break
     for apellido, conjunto in conjuntosDniAlumnos.items():
-        if apellido == apellido_seleccion:
+        if apellido == apellidoSeleccion:
             continue
-        print(f"Intersección de {str.capitalize(apellido_seleccion)} y {str.capitalize(apellido)}: {interseccionConjuntos(conjuntosDniAlumnos[apellido_seleccion], conjunto)}")
+        print(f"Intersección de {str.capitalize(apellidoSeleccion)} y {str.capitalize(apellido)}: {interseccionConjuntos(conjuntosDniAlumnos[apellidoSeleccion], conjunto)}")
 
 def menuDiferencia(conjuntosDniAlumnos):
     def diferenciaEntrePares(c1, c2):
         return list(set(c1) - set(c2))
 
-    apellido_seleccion = None
+    apellidoSeleccion = None
     while True:
         print("\n-----3 - Diferencia entre pares de conjuntos-----")
         print("\nConjuntos dispinibles: ")
@@ -82,15 +82,15 @@ def menuDiferencia(conjuntosDniAlumnos):
             print(f"{i + 1} - {str.capitalize(k)}")
         try:
             opcion = int(input("Seleccione el conjunto para calcular diferencia: "))
-            apellido_seleccion = APELLIDOS[opcion - 1]
+            apellidoSeleccion = APELLIDOS[opcion - 1]
         except ValueError:
             print("Por favor, ingrese un número válido.")
             continue
         break
     for apellido, conjunto in conjuntosDniAlumnos.items():
-        if apellido == apellido_seleccion:
+        if apellido == apellidoSeleccion:
             continue
-        print(f"Diferencia de {str.capitalize(apellido_seleccion)} y {str.capitalize(apellido)}: {diferenciaEntrePares(conjuntosDniAlumnos[apellido_seleccion], conjunto)}")
+        print(f"Diferencia de {str.capitalize(apellidoSeleccion)} y {str.capitalize(apellido)}: {diferenciaEntrePares(conjuntosDniAlumnos[apellidoSeleccion], conjunto)}")
 
 def menuDiferenciaSimetrica(conjuntosDniAlumnos):
     def diferenciaSimetrica(c1, c2):
@@ -102,15 +102,15 @@ def menuDiferenciaSimetrica(conjuntosDniAlumnos):
             print(f"{i + 1} - {str.capitalize(k)}")
         try:
             opcion = int(input("Seleccione el conjunto para calcular diferencia simétrica: "))
-            apellido_seleccion = APELLIDOS[opcion - 1]
+            apellidoSeleccion = APELLIDOS[opcion - 1]
         except ValueError:
             print("Por favor, ingrese un número válido.")
             continue
         break
     for apellido, conjunto in conjuntosDniAlumnos.items():
-        if apellido == apellido_seleccion:
+        if apellido == apellidoSeleccion:
             continue
-        print(f"Diferencia simétrica entre {str.capitalize(apellido_seleccion)} y {str.capitalize(apellido)}: {diferenciaSimetrica(conjuntosDniAlumnos[apellido_seleccion], conjunto)}")
+        print(f"Diferencia simétrica entre {str.capitalize(apellidoSeleccion)} y {str.capitalize(apellido)}: {diferenciaSimetrica(conjuntosDniAlumnos[apellidoSeleccion], conjunto)}")
 
 def menuFrecuencia(alumnos):
     def contarFrecuenciaDni(dni):
