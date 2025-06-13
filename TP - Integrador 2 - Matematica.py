@@ -1,3 +1,5 @@
+from datetime import datetime
+
 # A. Operaciones con DNIs
 print("-----A. Operaciones con DNIs-----")
 print("Ingresando DNIs de los jugadores... ")
@@ -188,7 +190,7 @@ def menuVerificaBisiesto(listaAnios):
 
 def menuProdCartesianoAniosEdades(aniosNacimiento):
     print("\n-----14 - Producto cartesiano años y edades-----")
-    anioActual = 2025
+    anioActual = datetime.now().year
     for nombre, anio in aniosNacimiento.items():
         edad = anioActual - anio
         print(f"{nombre} nació en {anio} y tiene {edad} años.")
