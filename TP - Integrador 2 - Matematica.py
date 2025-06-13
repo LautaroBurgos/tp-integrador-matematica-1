@@ -179,8 +179,8 @@ def menuCantAniosParesImpares(listaAnios):
     print(f"Pares: {pares} - Impares: {impares}")
 
 def menuGrupoZoBoomers(listaAnios):
-    print("\n-----12 - Grupo Z u Old School-----")
-    grupo = "Z" if all(a > 2000 for a in listaAnios) else "Old School"
+    print("\n-----12 - Grupo Z o Boomer----")
+    grupo = "Z" if all(a > 2000 for a in listaAnios) else "Boomer"
     print(f"Tenemos un grupo {grupo}")
 
 def menuVerificaBisiesto(listaAnios):
