@@ -2,8 +2,8 @@
 
 
 ## Integrantes:
-- Matías Facundo Herrera
 - Leandro Bareiro
+- Andres Oscar Bonelli
 - Alexis Borda
 - Lautaro Burgos
 
