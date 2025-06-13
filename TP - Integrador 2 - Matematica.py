@@ -135,7 +135,10 @@ def menuSumaDigitos(dniAlumnos):
 def menuDigitoCompartido(conjuntosDniAlumnos):
     print("\n-----7 - Evaluación lógica: Dígito compartido-----")
     inter = set.intersection(*[set(v) for v in conjuntosDniAlumnos.values()])
-    print("Dígitos compartidos entre todos:", list(inter))
+    if inter:
+        print("Dígitos compartidos entre todos:", sorted(inter))
+    else:
+        print("No hay ningún dígito compartido entre todos los conjuntos.")
 
 def menuDiversidadAlta(conjuntosDniAlumnos):
     print("\n-----8 - Evaluación lógica: Diversidad numérica-----")

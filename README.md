@@ -24,10 +24,13 @@ A partir de los DNIs de los integrantes, se generaron conjuntos de dígitos úni
 
 ### Expresiones lógicas redactadas:
 1. **"Si todos los conjuntos tienen al menos 6 elementos, entonces hay alta diversidad numérica."**
-   - Resultado con nuestros conjuntos: (Indicar si se cumple o no).
+   - Se cumple en un caso.
 
 2. **"Si un dígito aparece en todos los conjuntos, se marca como dígito común."**
-   - Resultado: Dígitos comunes = {…}
+   - No se cumple
+
+3. **"Si la suma de los dígitos de dos dnis es igual, entonces hay al menos un Par de dni con mismo valor"**
+   - No se cumple
 
 ---
 
