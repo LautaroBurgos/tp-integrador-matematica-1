@@ -192,3 +192,5 @@ while True:
 
     if opcion in opciones:
         opciones[opcion]()
+        print("\n-------------------------------------")
+        print(input("(presione cualquier tecla para volver al menu)"))
