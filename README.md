@@ -16,13 +16,13 @@ Este trabajo busca integrar conocimientos de Matemática (conjuntos y lógica) y
 
 A partir de los DNIs de los integrantes, se generaron conjuntos de dígitos únicos. Luego se realizaron operaciones entre conjuntos: unión, intersección, diferencia y diferencia simétrica. También se redactaron expresiones lógicas que posteriormente se implementaron en el programa.
 
-### Operaciones realizadas:
+### Operaciones con conjuntos:
 - Unión: A ∪ B = {…}
 - Intersección: A ∩ B = {…}
 - Diferencia (A - B): {…}
 - Diferencia simétrica: A Δ B = {…}
 
-### Expresiones lógicas redactadas:
+### Expresiones lógicas:
 1. **"Si todos los conjuntos tienen al menos 6 elementos, entonces hay alta diversidad numérica."**
    - Se cumple en un caso.
 

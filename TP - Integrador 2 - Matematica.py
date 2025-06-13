@@ -1,5 +1,5 @@
-from datetime import datetime
-
+from datetime import datetime # Para sacar el anio en curso
+from itertools import product # Producto cartesiano
 
 ALUMNOS = {
     'burgos': {"dni": "42575853", "anio": 2000},
@@ -193,11 +193,14 @@ def menuVerificaBisiesto(listaAnios):
 def menuProdCartesianoAniosEdades(alumnos):
     print("\n-----14 - Producto cartesiano años y edades-----")
     anioActual = datetime.now().year
-    for nombre, datos in alumnos.items():
-        anio = datos['anio']
-        edad = anioActual - anio
-        print(f"{nombre} nació en {anio} y tiene {edad} años.")
+    anios = {datos['anio'] for datos in alumnos.values()}
+    edades = {anioActual - datos['anio'] for datos in alumnos.values()}
 
+    print("Años:", sorted(anios))
+    print("Edades:", sorted(edades))
+    print("\nProducto cartesiano (año, edad):")
+    for par in product(sorted(anios), sorted(edades)):
+        print(par)
 # Menú principal (comentado para evitar ejecución automática)
 ################## MENU #############################
 opciones = {
