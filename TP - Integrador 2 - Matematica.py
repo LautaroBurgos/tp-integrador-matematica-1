@@ -3,13 +3,13 @@ print("-----A. Operaciones con DNIs-----")
 print("Ingresando DNIs de los jugadores... ")
 
 dniAlumnos = {
-    'martinez': "32845647",
-    'otamendi': "31155789",
-    'macallister': "38456127",
-    'fernandez': "42574621",
-    'depaul': "41245678",
-    'alvarez': "42978465"
+    'burgos': "42575853",
+    'bonelli': "30654105",
+    'borda': "42684197",
+    'bareiro': "0000000"
 }
+
+claves = list(dniAlumnos.keys())
 
 for apellido, dni in dniAlumnos.items():
     print(f"{str.capitalize(apellido)}: {dni}")
@@ -31,39 +31,84 @@ def interseccionConjuntos(c1, c2):
 def menuUnion(conjuntosDniAlumnos):
     def unionConjuntos(c1, c2):
         return list(set(c1).union(c2))
-
-    print("\n-----1 - Unión de conjuntos-----")
-    for apellido, conjunto in conjuntosDniAlumnos.items():
-        if apellido == 'martinez':
+    apellido_seleccion = None
+    while True:
+        print("\n-----1 - Unión de conjuntos-----")
+        print("Conjuntos dispinibles: ")
+        for i, k in enumerate(dniAlumnos.keys()):
+            print(f"{i+1} - {str.capitalize(k)}")
+        try:
+            opcion = int(input("Seleccione el conjunto para unir: "))
+            apellido_seleccion = claves[opcion - 1]
+        except ValueError:
+            print("Por favor, ingrese un número válido.")
             continue
-        print(f"Unión de Martinez y {str.capitalize(apellido)}: {unionConjuntos(conjuntosDniAlumnos['martinez'], conjunto)}")
+        break
+    for apellido, conjunto in conjuntosDniAlumnos.items():
+        if apellido == apellido_seleccion:
+            continue
+        print(f"Unión de {str.capitalize(apellido_seleccion)} y {str.capitalize(apellido)}: {unionConjuntos(conjuntosDniAlumnos[apellido_seleccion], conjunto)}")
 
 def menuInterseccion(conjuntosDniAlumnos):
-    print("\n-----2 - Intersección de conjuntos-----")
-    for apellido, conjunto in conjuntosDniAlumnos.items():
-        if apellido == 'martinez':
+    apellido_seleccion = None
+    while True:
+        print("\n-----2 - Intersección de conjuntos-----")
+        print("\nConjuntos dispinibles: ")
+        for i, k in enumerate(dniAlumnos.keys()):
+            print(f"{i+1} - {str.capitalize(k)}")
+        try:
+            opcion = int(input("Seleccione el conjunto para interseccion: "))
+            apellido_seleccion = claves[opcion - 1]
+        except ValueError:
+            print("Por favor, ingrese un número válido.")
             continue
-        print(f"Intersección de Martinez y {str.capitalize(apellido)}: {interseccionConjuntos(conjuntosDniAlumnos['martinez'], conjunto)}")
+        break
+    for apellido, conjunto in conjuntosDniAlumnos.items():
+        if apellido == apellido_seleccion:
+            continue
+        print(f"Intersección de {str.capitalize(apellido_seleccion)} y {str.capitalize(apellido)}: {interseccionConjuntos(conjuntosDniAlumnos[apellido_seleccion], conjunto)}")
 
 def menuDiferencia(conjuntosDniAlumnos):
     def diferenciaEntrePares(c1, c2):
         return list(set(c1) - set(c2))
 
-    print("\n-----3 - Diferencia entre pares de conjuntos-----")
-    for apellido, conjunto in conjuntosDniAlumnos.items():
-        if apellido == 'martinez':
+    apellido_seleccion = None
+    while True:
+        print("\n-----3 - Diferencia entre pares de conjuntos-----")
+        print("\nConjuntos dispinibles: ")
+        for i, k in enumerate(dniAlumnos.keys()):
+            print(f"{i + 1} - {str.capitalize(k)}")
+        try:
+            opcion = int(input("Seleccione el conjunto para calcular diferencia: "))
+            apellido_seleccion = claves[opcion - 1]
+        except ValueError:
+            print("Por favor, ingrese un número válido.")
             continue
-        print(f"Diferencia de Martinez y {str.capitalize(apellido)}: {diferenciaEntrePares(conjuntosDniAlumnos['martinez'], conjunto)}")
+        break
+    for apellido, conjunto in conjuntosDniAlumnos.items():
+        if apellido == apellido_seleccion:
+            continue
+        print(f"Diferencia de {str.capitalize(apellido_seleccion)} y {str.capitalize(apellido)}: {diferenciaEntrePares(conjuntosDniAlumnos[apellido_seleccion], conjunto)}")
 
 def menuDiferenciaSimetrica(conjuntosDniAlumnos):
     def diferenciaSimetrica(c1, c2):
         return list(set(c1).symmetric_difference(c2))
-
-    print("\n-----4 - Diferencia simétrica-----")
-    for apellido, conjunto in conjuntosDniAlumnos.items():
-        if apellido == 'martinez':
+    while True:
+        print("\n-----4 - Diferencia simétrica-----")
+        print("\nConjuntos dispinibles: ")
+        for i, k in enumerate(dniAlumnos.keys()):
+            print(f"{i + 1} - {str.capitalize(k)}")
+        try:
+            opcion = int(input("Seleccione el conjunto para calcular diferencia simétrica: "))
+            apellido_seleccion = claves[opcion - 1]
+        except ValueError:
+            print("Por favor, ingrese un número válido.")
             continue
-        print(f"Diferencia simétrica entre Martinez y {str.capitalize(apellido)}: {diferenciaSimetrica(conjuntosDniAlumnos['martinez'], conjunto)}")
+        break
+    for apellido, conjunto in conjuntosDniAlumnos.items():
+        if apellido == apellido_seleccion:
+            continue
+        print(f"Diferencia simétrica entre {str.capitalize(apellido_seleccion)} y {str.capitalize(apellido)}: {diferenciaSimetrica(conjuntosDniAlumnos[apellido_seleccion], conjunto)}")
 
 def menuFrecuencia(dniAlumnos):
     def contarFrecuenciaDni(dni):
@@ -115,12 +160,11 @@ def menuCompatibilidadDnis(conjuntosDniAlumnos):
 
 # B. Operaciones con años de nacimiento
 aniosNacimiento = {
-    "Martinez": 1992,
-    "Otamendi": 1988,
-    "Macallister": 1998,
-    "Fernandez": 2001,
-    "Depaul": 1994,
-    "Alvarez": 2000
+    "Burgos": 2000,
+    "Bonelli": 1983,
+    "Borda": 2000,
+    "Bareiro": 2000
+
 }
 listaAnios = list(aniosNacimiento.values())
 
