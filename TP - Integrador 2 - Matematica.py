@@ -1,25 +1,25 @@
 from datetime import datetime
 
+
+ALUMNOS = {
+    'burgos': {"dni": "42575853", "anio": 2000},
+    'bonelli': {"dni": "30654105", "anio": 1983},
+    'borda': {"dni": "42684197", "anio": 2000},
+    'bareiro': {"dni": "39316336", "anio": 1995}
+}
+APELLIDOS = list(ALUMNOS.keys())
+ANIOS = list(v.get('anio') for v in ALUMNOS.values())
+
 # A. Operaciones con DNIs
 print("-----A. Operaciones con DNIs-----")
-print("Ingresando DNIs de los jugadores... ")
+print("Listando DNIs de los alumnos... ")
+for apellido, datos in ALUMNOS.items():
+    print(f"{str.capitalize(apellido)}: {datos}")
 
-dniAlumnos = {
-    'burgos': "42575853",
-    'bonelli': "30654105",
-    'borda': "42684197",
-    'bareiro': "0000000"
-}
-
-claves = list(dniAlumnos.keys())
-
-for apellido, dni in dniAlumnos.items():
-    print(f"{str.capitalize(apellido)}: {dni}")
-
-print("\nGeneración de los conjuntos de dígitos únicos...")
+print("\nGenerando conjuntos de dígitos únicos a partir de los DNIs...")
 conjuntosDniAlumnos = {}
-for apellido, dni in dniAlumnos.items():
-    conjuntosDniAlumnos[apellido] = set(dni)
+for apellido, datos in ALUMNOS.items():
+    conjuntosDniAlumnos[apellido] = set(datos.get('dni'))
 
 for apellido, conjunto in conjuntosDniAlumnos.items():
     print(f"{str.capitalize(apellido)}: {conjunto}")
@@ -37,11 +37,11 @@ def menuUnion(conjuntosDniAlumnos):
     while True:
         print("\n-----1 - Unión de conjuntos-----")
         print("Conjuntos dispinibles: ")
-        for i, k in enumerate(dniAlumnos.keys()):
+        for i, k in enumerate(ALUMNOS.keys()):
             print(f"{i+1} - {str.capitalize(k)}")
         try:
             opcion = int(input("Seleccione el conjunto para unir: "))
-            apellido_seleccion = claves[opcion - 1]
+            apellido_seleccion = APELLIDOS[opcion - 1]
         except ValueError:
             print("Por favor, ingrese un número válido.")
             continue
@@ -56,11 +56,11 @@ def menuInterseccion(conjuntosDniAlumnos):
     while True:
         print("\n-----2 - Intersección de conjuntos-----")
         print("\nConjuntos dispinibles: ")
-        for i, k in enumerate(dniAlumnos.keys()):
+        for i, k in enumerate(ALUMNOS.keys()):
             print(f"{i+1} - {str.capitalize(k)}")
         try:
             opcion = int(input("Seleccione el conjunto para interseccion: "))
-            apellido_seleccion = claves[opcion - 1]
+            apellido_seleccion = APELLIDOS[opcion - 1]
         except ValueError:
             print("Por favor, ingrese un número válido.")
             continue
@@ -78,11 +78,11 @@ def menuDiferencia(conjuntosDniAlumnos):
     while True:
         print("\n-----3 - Diferencia entre pares de conjuntos-----")
         print("\nConjuntos dispinibles: ")
-        for i, k in enumerate(dniAlumnos.keys()):
+        for i, k in enumerate(ALUMNOS.keys()):
             print(f"{i + 1} - {str.capitalize(k)}")
         try:
             opcion = int(input("Seleccione el conjunto para calcular diferencia: "))
-            apellido_seleccion = claves[opcion - 1]
+            apellido_seleccion = APELLIDOS[opcion - 1]
         except ValueError:
             print("Por favor, ingrese un número válido.")
             continue
@@ -98,11 +98,11 @@ def menuDiferenciaSimetrica(conjuntosDniAlumnos):
     while True:
         print("\n-----4 - Diferencia simétrica-----")
         print("\nConjuntos dispinibles: ")
-        for i, k in enumerate(dniAlumnos.keys()):
+        for i, k in enumerate(ALUMNOS.keys()):
             print(f"{i + 1} - {str.capitalize(k)}")
         try:
             opcion = int(input("Seleccione el conjunto para calcular diferencia simétrica: "))
-            apellido_seleccion = claves[opcion - 1]
+            apellido_seleccion = APELLIDOS[opcion - 1]
         except ValueError:
             print("Por favor, ingrese un número válido.")
             continue
@@ -112,7 +112,7 @@ def menuDiferenciaSimetrica(conjuntosDniAlumnos):
             continue
         print(f"Diferencia simétrica entre {str.capitalize(apellido_seleccion)} y {str.capitalize(apellido)}: {diferenciaSimetrica(conjuntosDniAlumnos[apellido_seleccion], conjunto)}")
 
-def menuFrecuencia(dniAlumnos):
+def menuFrecuencia(alumnos):
     def contarFrecuenciaDni(dni):
         freq = {}
         for d in dni:
@@ -120,16 +120,17 @@ def menuFrecuencia(dniAlumnos):
         return freq
 
     print("\n-----5 - Frecuencia de cada dígito en los DNI-----")
-    for apellido, dni in dniAlumnos.items():
+    for apellido, datos in alumnos.items():
+        dni = datos['dni']
         frec = contarFrecuenciaDni(dni)
         for digito, count in sorted(frec.items()):
-            print(f"{str.capitalize(apellido)} - Dígito {digito}: {count} vez/veces")
+            print(f"{str.capitalize(apellido)} - Dígito {digito}: {count} {"vez" if count == 1 else "veces"}")
         print()
 
 def menuSumaDigitos(dniAlumnos):
     print("\n-----6 - Suma total dígitos DNI-----")
-    for apellido, dni in dniAlumnos.items():
-        print(f"Suma de los dígitos del DNI de {str.capitalize(apellido)}: {sumaDigitosDni(dni)}")
+    for apellido, datos in dniAlumnos.items():
+        print(f"Suma de los dígitos del DNI de {str.capitalize(apellido)}: {sumaDigitosDni(datos['dni'])}")
 
 def menuDigitoCompartido(conjuntosDniAlumnos):
     print("\n-----7 - Evaluación lógica: Dígito compartido-----")
@@ -142,15 +143,20 @@ def menuDiversidadAlta(conjuntosDniAlumnos):
         tipo = "Alta" if len(conjunto) > 6 else "Baja"
         print(f"DNI de {str.capitalize(apellido)}: Diversidad Numérica {tipo}")
 
-def menuSumaTotalDigitosDni(dniAlumnos):
-    print("\n-----9 - Evaluación lógica: Suma total de dígitos repetida-----")
+def menuSumaTotalDigitosDni(alumnos):
+    print("\n-----9 - Evaluación lógica: Suma total de dígitos repetidos-----")
     sumaDict = {}
-    for apellido, dni in dniAlumnos.items():
+    repetidos = False
+    for apellido, datos in alumnos.items():
+        dni = datos['dni']
         s = sumaDigitosDni(dni)
         sumaDict.setdefault(s, []).append(apellido)
     for suma, apellidos in sumaDict.items():
         if len(apellidos) > 1:
+            repetidos = True
             print(f"Suma {suma}: {', '.join(apellidos)}")
+    if not repetidos:
+        print("No se encontraron sumas repetidas entre los DNIs.")
 
 def menuCompatibilidadDnis(conjuntosDniAlumnos):
     print("\n-----10 - Compatibilidad entre conjuntos de DNIs-----")
@@ -158,17 +164,10 @@ def menuCompatibilidadDnis(conjuntosDniAlumnos):
         comunes = interseccionConjuntos(c1, c2)
         nivel = "alta" if len(comunes) >= 3 else "baja"
         return f"{n1} tiene {nivel} compatibilidad con {n2}"
-    print(altaCompatibilidad("Martinez", conjuntosDniAlumnos['martinez'], "Otamendi", conjuntosDniAlumnos['otamendi']))
+    print(altaCompatibilidad("Bonelli", conjuntosDniAlumnos['bonelli'], "Burgos", conjuntosDniAlumnos['burgos']))
 
 # B. Operaciones con años de nacimiento
-aniosNacimiento = {
-    "Burgos": 2000,
-    "Bonelli": 1983,
-    "Borda": 2000,
-    "Bareiro": 2000
 
-}
-listaAnios = list(aniosNacimiento.values())
 
 def menuCantAniosParesImpares(listaAnios):
     pares = sum(1 for a in listaAnios if a % 2 == 0)
@@ -188,10 +187,11 @@ def menuVerificaBisiesto(listaAnios):
             print(f"Año especial: {a}")
             break
 
-def menuProdCartesianoAniosEdades(aniosNacimiento):
+def menuProdCartesianoAniosEdades(alumnos):
     print("\n-----14 - Producto cartesiano años y edades-----")
     anioActual = datetime.now().year
-    for nombre, anio in aniosNacimiento.items():
+    for nombre, datos in alumnos.items():
+        anio = datos['anio']
         edad = anioActual - anio
         print(f"{nombre} nació en {anio} y tiene {edad} años.")
 
@@ -202,16 +202,16 @@ opciones = {
     '2': lambda: menuInterseccion(conjuntosDniAlumnos),
     '3': lambda: menuDiferencia(conjuntosDniAlumnos),
     '4': lambda: menuDiferenciaSimetrica(conjuntosDniAlumnos),
-    '5': lambda: menuFrecuencia(dniAlumnos),
-    '6': lambda: menuSumaDigitos(dniAlumnos),
+    '5': lambda: menuFrecuencia(ALUMNOS),
+    '6': lambda: menuSumaDigitos(ALUMNOS),
     '7': lambda: menuDigitoCompartido(conjuntosDniAlumnos),
     '8': lambda: menuDiversidadAlta(conjuntosDniAlumnos),
-    '9': lambda: menuSumaTotalDigitosDni(dniAlumnos),
+    '9': lambda: menuSumaTotalDigitosDni(ALUMNOS),
     '10': lambda: menuCompatibilidadDnis(conjuntosDniAlumnos),
-    '11': lambda: menuCantAniosParesImpares(listaAnios),
-    '12': lambda: menuGrupoZoBoomers(listaAnios),
-    '13': lambda: menuVerificaBisiesto(listaAnios),
-    '14': lambda: menuProdCartesianoAniosEdades(aniosNacimiento)
+    '11': lambda: menuCantAniosParesImpares(ANIOS),
+    '12': lambda: menuGrupoZoBoomers(ANIOS),
+    '13': lambda: menuVerificaBisiesto(ANIOS),
+    '14': lambda: menuProdCartesianoAniosEdades(ALUMNOS)
 }
 while True:
     print("\n-------------------TP SEMANA DE INTEGRACION II - MENU-------------------")
